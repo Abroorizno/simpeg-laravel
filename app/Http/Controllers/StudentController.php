@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Instructor;
 use App\Models\Major;
 use App\Models\Modul;
-use App\Models\ModulDetail;
 use App\Models\Student;
-use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class StudentController extends Controller
@@ -28,18 +28,49 @@ class StudentController extends Controller
     public function showModuls()
     {
         $title = 'Moduls Active';
-        $student = Student::with('users', 'majors')->get();
 
+        // Ambil user login
+        $user = Auth::user();
+
+        // Ambil data student berdasarkan user login
+        $student = Student::where('user_id', $user->id)->first();
+
+        // Jika student tidak ditemukan
+        if (!$student) {
+            return back()->with('error', 'Student tidak ditemukan.');
+        }
+
+        // Ambil major_id student
+        $majorId = $student->majors_id;
+
+        // Ambil semua instructor yang memiliki majors_id yang sama
+        $instructorIds = Instructor::where('majors_id', $majorId)->pluck('id');
+
+        // Ambil semua modul dari instructor tersebut
         $moduls = Modul::with(['modulDetails', 'instructor.users'])
-            ->where('instructor_id', 1)
+            ->whereIn('instructor_id', $instructorIds)
             ->where('is_active', 1)
-            ->whereHas('instructor', function ($query) {
-                $query->where('majors_id', 1);
-            })
             ->get();
 
         return view('modul.index', compact('title', 'student', 'moduls'));
     }
+
+
+    // public function showModuls()
+    // {
+    //     $title = 'Moduls Active';
+    //     $student = Student::with('users', 'majors')->get();
+
+    //     $moduls = Modul::with(['modulDetails', 'instructor.users'])
+    //         ->where('instructor_id', 1)
+    //         ->where('is_active', 1)
+    //         ->whereHas('instructor', function ($query) {
+    //             $query->where('majors_id', 1);
+    //         })
+    //         ->get();
+
+    //     return view('modul.index', compact('title', 'student', 'moduls'));
+    // }
 
     public function store(Request $request)
     {

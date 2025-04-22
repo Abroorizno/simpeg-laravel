@@ -28,4 +28,9 @@ class Instructor extends Model
     {
         return $this->belongsTo(Major::class, 'majors_id', 'id');
     }
+
+    // public function majorDetail()
+    // {
+    //     return $this->hasMany(MajorDetail::class, 'majors_id', 'majors_id');
+    // }
 }

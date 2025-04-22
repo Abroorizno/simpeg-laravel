@@ -4,8 +4,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\MajorDetailController;
 use App\Http\Controllers\ModulController;
 use App\Http\Controllers\ModulDetailController;
+use App\Http\Controllers\PICController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
@@ -31,12 +33,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('majors', MajorController::class);
+    Route::resource('major_details', MajorDetailController::class);
     Route::resource('instructors', InstructorController::class);
     Route::resource('user_role', UserRoleController::class);
     Route::resource('students', StudentController::class);
     Route::resource('moduls', ModulController::class);
     Route::resource('modul_details', ModulDetailController::class);
     Route::get('moduls-active', [StudentController::class, 'showModuls'])->name('moduls-active');
+    Route::get('moduls-pic', [PICController::class, 'showModuls'])->name('moduls-pic');
 
     Route::get('users-account', [UserController::class, 'account'])->name('users-account');
     Route::put('users-account/{id}', [UserController::class, 'updateAccount'])->name('users.updateAccount');

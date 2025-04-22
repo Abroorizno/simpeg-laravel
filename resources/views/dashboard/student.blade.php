@@ -149,6 +149,7 @@
                                                                                     class="form-label">Date of Birth</label>
                                                                                 <input type="date" name="dob"
                                                                                     id="nameBasic" class="form-control"
+                                                                                    value="{{ $student->date_of_birth }}"
                                                                                     placeholder="Enter Date" />
                                                                             </div>
                                                                         </div>
@@ -159,7 +160,7 @@
                                                                                     Birth</label>
                                                                                 <input type="text" name="pob"
                                                                                     id="nameBasic" class="form-control"
-                                                                                    placeholder="Enter Place" />
+                                                                                    value="{{ $student->place_of_birth }}" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
@@ -168,11 +169,14 @@
                                                                                     class="form-label">Gender</label>
                                                                                 <select name="gender" id="gender"
                                                                                     class="form-control">
-                                                                                    <option value="0" selected
-                                                                                        disabled>Select Gender
-                                                                                    </option>
-                                                                                    <option value="1">Male</option>
-                                                                                    <option value="2">Female</option>
+                                                                                    <option value="0" disabled>Select
+                                                                                        Gender</option>
+                                                                                    <option value="1"
+                                                                                        {{ $student->gender == 1 ? 'selected' : '' }}>
+                                                                                        Male</option>
+                                                                                    <option value="2"
+                                                                                        {{ $student->gender == 2 ? 'selected' : '' }}>
+                                                                                        Female</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>

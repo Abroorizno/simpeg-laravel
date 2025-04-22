@@ -1,6 +1,12 @@
 @extends('layouts.main')
 {{-- @section('title', 'Data Categories') --}}
 
+{{-- @php
+    use App\Models\UserRole;
+    $user = Auth::user();
+    $roleId = $user ? UserRole::where('user_id', $user->id)->value('role_id') : null;
+@endphp --}}
+
 @section('content')
     <section class="section">
         <div class="container-xxl flex-grow-1 container-p-y">

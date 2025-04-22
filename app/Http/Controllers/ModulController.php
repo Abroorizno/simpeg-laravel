@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Instructor;
 use App\Models\Modul;
 use App\Models\ModulDetail;
+use App\Models\PIC;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,24 @@ class ModulController extends Controller
         $datas = Modul::with('instructor.users', 'modulDetails')->where('instructor_id', $instructor->id)->get();
 
         return view('modul.index', compact('title', 'datas', 'instructor'));
+    }
+
+    public function showModuls()
+    {
+        $title = 'Moduls Active';
+
+        $modulses = Modul::with([
+            'modulDetails',
+            'instructor.user',
+            'instructor.major'
+        ])
+            ->where('is_active', 1)
+            ->whereHas('instructor', function ($query) {
+                $query->where('majors_id', 1); // Ganti angka 1 kalau mau dinamis
+            })
+            ->get();
+
+        return view('modul.index', compact('title', 'modulses'));
     }
 
     public function store(Request $request)

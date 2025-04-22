@@ -81,6 +81,11 @@
                         <div data-i18n="Input groups">Majors</div>
                     </a>
                 </li>
+                <li class="menu-item">
+                    <a href="/major_details" class="menu-link">
+                        <div data-i18n="Input groups">Majors Details</div>
+                    </a>
+                </li>
             </ul>
         </li>
 
@@ -123,58 +128,28 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Data Users</span></li>
 
         <li class="menu-item">
-            <a href="/users" class="menu-link">
+            <a href="/instructors" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Analytics">Users</div>
-            </a>
-        </li>
-
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Data PPKD</span></li>
-
-        <li class="menu-item">
-            <a href="/class" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-chalkboard'></i>
-                <div data-i18n="Analytics">Class</div>
+                <div data-i18n="Analytics">Instructor</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-group"></i>
-                <div data-i18n="Form Elements">Instructors Data</div>
+            <a href="/students" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Analytics">Students</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="/instructor" class="menu-link">
-                        <div data-i18n="Basic Inputs">Web Programming</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="instructor/mobile" class="menu-link">
-                        <div data-i18n="Input groups">Mobile Programming</div>
-                    </a>
-                </li>
-            </ul>
         </li>
 
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Data Courses</span></li>
+
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-group"></i>
-                <div data-i18n="Form Elements">Students Data</div>
+            <a href="/moduls-pic" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-file-archive"></i>
+                <div data-i18n="Analytics">Moduls</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="/pos" class="menu-link">
-                        <div data-i18n="Basic Inputs">Web Programming</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="forms-input-groups.html" class="menu-link">
-                        <div data-i18n="Input groups">Mobile Programming</div>
-                    </a>
-                </li>
-            </ul>
         </li>
+
         {{-- INSTRUCTOR --}}
     @elseif ($roleId === 2)
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Instructor</span></li>
@@ -202,15 +177,15 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="/users" class="menu-link">
+                    <a href="/moduls-active" class="menu-link">
                         <div data-i18n="Basic Inputs">Week 1</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                {{-- <li class="menu-item">
                     <a href="/user_role" class="menu-link">
                         <div data-i18n="Basic Inputs">Week 2</div>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
 

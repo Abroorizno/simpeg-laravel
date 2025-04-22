@@ -20,10 +20,6 @@
                                         <div
                                             class="d-flex justify-content-between align-items-start flex-column flex-sm-row mt-3">
                                             <h5 class="card-title text-primary">{{ $title ?? '' }}</h5>
-                                            {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#add-modul">
-                                                Add Modul
-                                            </button> --}}
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -259,6 +255,102 @@
                                                                 </div>
                                                             </div> --}}
                                                     @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ Transactions -->
+                </div>
+            </div>
+        </section>
+    @endsection
+@elseif ($roleId === 1)
+    @section('content')
+        <section class="section">
+            <div class="container-xxl flex-grow-1 container-p-y">
+                <div class="row">
+                    <div class="col-lg-12 mb-4 order-0">
+                        <div class="card">
+                            <div class="d-flex align-items-end row">
+                                <div class="col-sm-12">
+                                    <div class="card-header">
+                                        <div
+                                            class="d-flex justify-content-between align-items-start flex-column flex-sm-row mt-3">
+                                            <h5 class="card-title text-primary">{{ $title ?? '' }}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table mb-3" id="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Title</th>
+                                                        <th>Instructor</th>
+                                                        <th>Description</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        $no = 1;
+                                                    @endphp
+                                                    @foreach ($moduls as $modul)
+                                                        <tr>
+                                                            <td>{{ $no++ }}.</td>
+                                                            <td>{{ $modul->modulDetails->name }}</td>
+                                                            <td>{{ $modul->instructor->user->name ?? '-' }}</td>
+                                                            <td>{{ $modul->description }}</td>
+                                                            <td>
+                                                                <ul>
+                                                                    @foreach ($modul->modulDetails as $detail)
+                                                                        <li>
+                                                                            File: {{ $detail->file_name }}<br>
+                                                                            <a href="{{ asset('storage/' . $detail->file) }}"
+                                                                                target="_blank">View</a> |
+                                                                            <a href="{{ asset('storage/' . $detail->file) }}"
+                                                                                download>Download</a><br>
+                                                                            Link Referensi:
+                                                                            <a href="{{ $detail->reference_link }}"
+                                                                                target="_blank">
+                                                                                Link
+                                                                            </a>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    {{-- @foreach ($moduls as $modul)
+                                                        <tr>
+                                                            <td>{{ $no++ }}.</td>
+                                                            <td>{{ $modul->name }}</td>
+                                                            <td>{{ $modul->instructor->users->name ?? '-' }}</td>
+                                                            <td>{{ $modul->description }}</td>
+                                                            <td>
+                                                                <ul>
+                                                                    @foreach ($modul->modulDetails as $detail)
+                                                                        <li>
+                                                                            File: {{ $detail->file_name }}<br>
+                                                                            <a href="{{ asset('storage/' . $detail->file) }}"
+                                                                                target="_blank">View</a> |
+                                                                            <a href="{{ asset('storage/' . $detail->file) }}"
+                                                                                download>Download</a><br>
+                                                                            Link Referensi:
+                                                                            <a href="{{ $detail->reference_link }}"
+                                                                                target="_blank">
+                                                                                Link
+                                                                            </a>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach --}}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -513,7 +605,7 @@
                                                                                     value="{{ $data->id }}" />
                                                                                 <div class="col">
                                                                                     <iframe
-                                                                                        src="{{ asset('storage/moduls/' . $detail->fileName) }}"
+                                                                                        src="{{ asset('storage/' . $detail->file) }}"
                                                                                         width="100%"
                                                                                         height="600px"></iframe>
                                                                                 </div>
