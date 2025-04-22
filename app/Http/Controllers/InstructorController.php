@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Instructor;
 use App\Models\Major;
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -14,10 +15,11 @@ class InstructorController extends Controller
     {
         $title = 'Instructor List';
         $instructors = Instructor::with('users', 'majors')->get();
-        $users = User::orderBy('id', 'desc')->get();
+        // $users = User::orderBy('id', 'desc')->get();
+        $user_roles = UserRole::with('users')->where('role_id', 2)->get();
         $majors = Major::orderBy('id', 'desc')->get();
 
-        return view('dashboard.instructor', compact('title', 'instructors', 'users', 'majors'));
+        return view('dashboard.instructor', compact('title', 'instructors', 'user_roles', 'majors'));
     }
 
     public function store(Request $request)

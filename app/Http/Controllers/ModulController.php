@@ -56,7 +56,8 @@ class ModulController extends Controller
 
         $data = [
             'name' => $request->name,
-            'description' => $request->desc
+            'description' => $request->desc,
+            'is_active' => $request->is_active
         ];
 
         $modul->update($data);

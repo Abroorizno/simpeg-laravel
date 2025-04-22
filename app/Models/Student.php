@@ -27,4 +27,26 @@ class Student extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function moduls()
+    {
+        return $this->hasManyThrough(
+            Modul::class,
+            Major::class,
+            'id', // Foreign key on the majors table
+            'majors_id', // Foreign key on the moduls table
+            'majors_id', // Local key on the students table
+            'id' // Local key on the majors table
+        );
+    }
+
+    public function modulDetails()
+    {
+        return $this->hasMany(ModulDetail::class);
+    }
+
+    public function instructor()
+    {
+        return $this->belongsTo(Instructor::class);
+    }
 }

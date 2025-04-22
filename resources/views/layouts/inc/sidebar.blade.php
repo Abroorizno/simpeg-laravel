@@ -224,6 +224,33 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Master Data</span></li>
+
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bxs-file-archive"></i>
+                <div data-i18n="Form Elements">Master Data Users</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="/user_role" class="menu-link">
+                        <div data-i18n="Basic Inputs">User Roles</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/instructors" class="menu-link">
+                        <div data-i18n="Input groups">Instructors</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/students" class="menu-link">
+                        <div data-i18n="Input groups">Students</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         {{-- STUDENT --}}
     @elseif ($roleId === 5)
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Student</span></li>
@@ -232,6 +259,15 @@
             <a href="/dashboard" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Courses</span></li>
+
+        <li class="menu-item">
+            <a href="/moduls-active" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-book-reader"></i>
+                <div data-i18n="Analytics">Moduls</div>
             </a>
         </li>
     @endif

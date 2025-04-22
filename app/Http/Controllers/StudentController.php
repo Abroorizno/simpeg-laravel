@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Major;
+use App\Models\Modul;
+use App\Models\ModulDetail;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\UserRole;
@@ -21,6 +23,22 @@ class StudentController extends Controller
         // return $students;
 
         return view('dashboard.student', compact('title', 'students', 'user_roles', 'majors'));
+    }
+
+    public function showModuls()
+    {
+        $title = 'Moduls Active';
+        $student = Student::with('users', 'majors')->get();
+
+        $moduls = Modul::with(['modulDetails', 'instructor.users'])
+            ->where('instructor_id', 1)
+            ->where('is_active', 1)
+            ->whereHas('instructor', function ($query) {
+                $query->where('majors_id', 1);
+            })
+            ->get();
+
+        return view('modul.index', compact('title', 'student', 'moduls'));
     }
 
     public function store(Request $request)

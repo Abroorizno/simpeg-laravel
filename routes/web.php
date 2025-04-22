@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('students', StudentController::class);
     Route::resource('moduls', ModulController::class);
     Route::resource('modul_details', ModulDetailController::class);
+    Route::get('moduls-active', [StudentController::class, 'showModuls'])->name('moduls-active');
 
     Route::get('users-account', [UserController::class, 'account'])->name('users-account');
     Route::put('users-account/{id}', [UserController::class, 'updateAccount'])->name('users.updateAccount');

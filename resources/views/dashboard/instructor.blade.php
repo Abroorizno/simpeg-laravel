@@ -118,11 +118,11 @@
                                                                                     <option value="#" disabled
                                                                                         selected>Select Category
                                                                                     </option>
-                                                                                    @foreach ($users as $user)
+                                                                                    @foreach ($user_roles as $user_role)
                                                                                         <option
-                                                                                            {{ $user->id == $inst->user_id ? 'selected' : '' }}
-                                                                                            value="{{ $user->id }}">
-                                                                                            {{ $user->name }}
+                                                                                            {{ $user_role->users->id == $inst->user_id ? 'selected' : '' }}
+                                                                                            value="{{ $user_role->users->id }}">
+                                                                                            {{ $user_role->users->name }}
                                                                                         </option>
                                                                                     @endforeach
                                                                                 </select>
@@ -237,9 +237,9 @@
                                                             <select name="user" id="user" class="form-control">
                                                                 <option value="#" disabled selected>Select Category
                                                                 </option>
-                                                                @foreach ($users as $user)
-                                                                    <option value="{{ $user->id }}">
-                                                                        {{ $user->name }}</option>
+                                                                @foreach ($user_roles as $user_role)
+                                                                    <option value="{{ $user_role->users->id }}">
+                                                                        {{ $user_role->users->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
