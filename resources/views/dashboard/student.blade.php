@@ -90,7 +90,7 @@
                                                                 <div class="modal-body">
                                                                     <form
                                                                         action="{{ route('students.update', $student->id) }}"
-                                                                        method="post">
+                                                                        method="post" enctype="multipart/form-data">
                                                                         @csrf
                                                                         @method('PUT')
                                                                         <div class="row">

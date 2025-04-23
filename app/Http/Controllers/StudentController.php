@@ -104,12 +104,12 @@ class StudentController extends Controller
             'is_active' => $request->has('is_active') ? '1' : '0'
         ];
 
-        if ($request->hasFile('photo')) {
+        if ($request->hasFile('photo_profile')) {
             if ($student->photo) {
                 File::delete(public_path('storage/' . $student->photo));
             }
 
-            $file = $request->file('photo')->store('photo_students', 'public');
+            $file = $request->file('photo_profile')->store('photo_student', 'public');
             $data['photo'] = $file;
         }
 
